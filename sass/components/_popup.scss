@@ -10,6 +10,12 @@
     visibility: hidden;
     transition: all .3s;
 
+    @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
     &:target {
         opacity: 1;
         visibility: visible;
@@ -37,6 +43,14 @@
     &__left {
         width: 33.33333%;
         display: table-cell;
+
+        @include respond(tab-land) {
+            vertical-align: middle;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
     }
 
     &__right {
@@ -59,6 +73,14 @@
         column-gap: 4rem;
         column-rule: 1px solid $color-grey-light-2;
         hyphens: auto;
+
+        @include respond(tab-port) {
+            column-count: 1;
+        }
+
+        @include respond(phone) {
+            column-count: 1;
+        }
     }
 
     &__close {
